@@ -3,20 +3,36 @@ package com.ohgiraffers.section02.annotation.subsection03.collection;
 import com.ohgiraffers.section02.common.Poketmon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Map;
 
-@Service("poketmonServiceQualifier")
+@Service("poketmonServiceCollection")
 public class PoketmonService {
 
-    private List<Poketmon> poketmonList;
+//    private List<Poketmon> poketmonList;
+//
+//    @Autowired
+//    public PoketmonService(List<Poketmon> poketmonList) {
+//        this.poketmonList = poketmonList;
+//    }
+//
+//    public void poketmonAttack(){
+//        poketmonList.forEach(Poketmon::attack);
+//    }
+
+//    bean 이름의 사전순으로 list에 추가되어 모든 poketmon 타입의 빈이 주입된다.
+    private Map<String, Poketmon> poketmonMap;
 
     @Autowired
-    public PoketmonService(List<Poketmon> poketmonList) {
-        this.poketmonList = poketmonList;
+    public PoketmonService(Map<String, Poketmon> poketmonMap) {
+        this.poketmonMap = poketmonMap;
     }
 
     public void poketmonAttack(){
-        poketmonList.forEach(Poketmon::attack);
+        poketmonMap.forEach((k, v) -> {
+            System.out.println("key : " + k);
+            System.out.print("value : ");
+            v.attack();
+        });
     }
 }

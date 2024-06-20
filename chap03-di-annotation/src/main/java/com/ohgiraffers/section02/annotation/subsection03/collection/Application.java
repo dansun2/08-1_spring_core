@@ -14,7 +14,7 @@ public class Application {
             System.out.println(bean);
         }
 
-        PoketmonService poketmonService = context.getBean("poketmonServiceQualifier", PoketmonService.class);
+        PoketmonService poketmonService = context.getBean("poketmonServiceCollection", PoketmonService.class);
 
         poketmonService.poketmonAttack();
     }
