@@ -22,6 +22,11 @@ public class PoketmonService {
 //        poketmon.attack();
 //    }
 
+
+    /*
+    * list<Poketmon> 타입으로 변경한 뒤 name 속성을 따로 기재하지 않고 동작시킬 수 있다.
+    * 기본적으로는 name 속성을 통해 주입하지만 name 속성이 없을 경우 type을 통해 의존성 주입한다.
+    * */
     @Resource
     private List<Poketmon> poketmons;
 
