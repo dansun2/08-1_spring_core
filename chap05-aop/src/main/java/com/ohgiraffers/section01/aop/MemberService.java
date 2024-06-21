@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-@Service
+@Service // 특별한 기능을 갖진 않음. 도메인 로직을 표현하기 위한 서비스 계층이다 라는 것을 명시
 public class MemberService {
     private final MemberDAO memberDAO;
 

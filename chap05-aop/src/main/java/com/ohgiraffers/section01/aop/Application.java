@@ -10,6 +10,9 @@ public class Application {
         ApplicationContext context = new AnnotationConfigApplicationContext("com.ohgiraffers.section01");
         MemberService memberService = (MemberService) context.getBean("memberService", MemberService.class);
         System.out.println("================ select Members ================");
+//        System.out.println(memberService.selectMembers());
 
+        System.out.println("================ selectMember ================");
+        System.out.println(memberService.selectMember(10L));
     }
 }

@@ -1,5 +1,7 @@
 package com.ohgiraffers.section01.aop;
 
+/* 어드바이스란 어스펙트()가 수행해야 할 실제 동작을 정의하는 부분이다. */
+
 /*
 * AOP(Aspect-oriented Programming 관점 지향 프로그래밍)
 * 프로그램의 관심사를 분리하여 모듈화하는것을 목표로 한다.
@@ -19,6 +21,7 @@ package com.ohgiraffers.section01.aop;
 * */
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
@@ -66,5 +69,30 @@ public class LogginAspect {
             ((Map<Long, MemberDTO>)result).put(100L, new MemberDTO(100L, "반환값 가공"));
         }
     }
+    /*
+    * aop가 적용될 메소드가 에러를 발생하여 Exception을 던지는 시점을 말한다.
+    * */
+    @AfterThrowing(pointcut = "logPointcut()", throwing = "exception")
+    public void logAfterThrowing(Throwable exception){
+        System.out.println("after Throwing exception " + exception);
+    }
+
+    /*
+    * Around Advice는 가장 강력한 어드바이스로
+    * 이 어드바이스는 조인 포인트를 완전히 장악하기 때문에
+    * 앞에서 살펴 본 어드바이스 모두 Around 어드바이스로 조합할 수 있다.
+    * 심지어 원본 조인포인트를 언제 실행할 지, 실행 자체를 안할지, 계속 실행할지 여부까지도 제어한다.
+    * AroundAdvice의 조인 포인트는 매개변수 ProceedingJoinPoint 로 고정되어 있다.
+    * JoinPoint 의 하위 인터페이스로 원본 조인포인트의 진행 시점을 제어할 수 있다.
+    * 조인포인트 진행하는 호출을 잊는 경우가 자주 발생하기 때문에 주의해야 하며
+    * 최소한의 요건을 충족하면서도 가장 기능이 약한 어드바이스를 쓰는게 바람직하다.
+    * */
+//    @Around("logPointcut()")
+//    public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
+//        System.out.println("around Before : " + joinPoint.getSignature().getName());
+//        Object result = joinPoint.proceed(); // 이걸 기점으로 조절할 수 있다.
+//        System.out.println("around After : " + joinPoint.getSignature().getName());
+//        return result;
+//    }
 
 }
