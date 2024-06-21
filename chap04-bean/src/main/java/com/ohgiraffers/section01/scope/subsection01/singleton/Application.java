@@ -27,5 +27,14 @@ public class Application {
         cart1.addItem(milk);
 
         System.out.println("cart1에 담긴 내용 : " + cart1.getItems());
+
+        ShoppingCart cart2 = context.getBean("cart", ShoppingCart.class);
+        cart2.addItem(water);
+
+        System.out.println("cart2에 담긴 내용 : " + cart2.getItems());
+
+        System.out.println("ㅡㅡㅡㅡㅡcart1과 cart2 비교하기ㅡㅡㅡㅡㅡ");
+        System.out.println("cart1에 담긴 내용 : " + cart1.getItems());
+        System.out.println("cart2에 담긴 내용 : " + cart2.getItems());
     }
 }
