@@ -4,10 +4,7 @@ public class Berverage extends Product{
     private int capacity;
 
     public Berverage() {
-    }
-
-    public Berverage(int capacity) {
-        this.capacity = capacity;
+        super();
     }
 
     public Berverage(String name, int price, int capacity) {
