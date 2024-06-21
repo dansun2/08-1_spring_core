@@ -17,5 +17,46 @@ package com.ohgiraffers.section01.aop;
 *   - After -throwing : 예외가 발생한 후에 동작
 *   - Aroung : 메소드 호출 이전, 이후, 예외발생 등 모든 시점에 동작
 * */
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
+
+@Aspect
+@Component
 public class LogginAspect {
+
+    /*
+    * pointcut : 관심 조인 포인트를 결정하여 어드바이스가 실행되는 시기를 제어한다.
+    * execution : 메서드 실행 조인 포인트를 매칭한다.
+    * execution ([수식어] 리턴타입 [클래스이름].이름(파라미터))
+    * 수식어는 생략이 가능하다. public price protected default (접근 제어자)
+    * *Service.*(..) : 매개변수가 0개 이상인 모든 메서드
+    * *Service.*(*) : 매개변수가 1개인 모든 메서드
+    * *Service.*(*,..) : 매개변수가 2개인 모든 메서드
+    * */
+    @Pointcut("execution(* com.ohgiraffers.section01.aop.*Service.*(..))")
+    public void logPointcut(){
+    }
+
+    @Before("LogginAspect.logPointcut()")
+    public void logBefore(JoinPoint joinPoint){
+        System.out.println("before joinPoint.getTarger() " + joinPoint.getTarget());
+        System.out.println("before joinPoint.getSignature() " + joinPoint.getSignature());
+        if(joinPoint.getArgs().length>0){
+            System.out.println("before joinPoint.getArgs() " + joinPoint.getArgs()[0]);
+        }
+    }
+
+    @After("logPointcut()")
+    public void logAfter(JoinPoint joinPoint){
+        System.out.println("after joinPoint.getTarger() " + joinPoint.getTarget());
+        System.out.println("after joinPoint.getSignature() " + joinPoint.getSignature());
+        if(joinPoint.getArgs().length>0){
+            System.out.println("after joinPoint.getArgs() " + joinPoint.getArgs()[0]);
+        }
+    }
 }
