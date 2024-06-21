@@ -1,4 +1,4 @@
-package com.ohgiraffers.section01.scope.subsection01.singleton;
+package com.ohgiraffers.section02.initdestroy.subsection01.java;
 
 import com.ohgiraffers.common.Berverage;
 import com.ohgiraffers.common.Bread;
