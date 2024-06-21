@@ -19,11 +19,10 @@ package com.ohgiraffers.section01.aop;
 * */
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 @Aspect
 @Component
@@ -59,4 +58,13 @@ public class LogginAspect {
             System.out.println("after joinPoint.getArgs() " + joinPoint.getArgs()[0]);
         }
     }
+
+    @AfterReturning(pointcut = "logPointcut()", returning = "result") // 문제없이 정상 실행됐을때 호출되는애
+    public void logAfterReturning(JoinPoint joinPoint, Object result){
+        System.out.println("after Returning " + result);
+        if(result != null && result instanceof Map){
+            ((Map<Long, MemberDTO>)result).put(100L, new MemberDTO(100L, "반환값 가공"));
+        }
+    }
+
 }
