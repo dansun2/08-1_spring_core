@@ -1,16 +1,18 @@
-package com.ohgiraffers.section02.initdestroy.subsection01.java;
+package com.ohgiraffers.section02.initdestroy.subsection02.annotation;
 
 import com.ohgiraffers.common.Berverage;
 import com.ohgiraffers.common.Bread;
 import com.ohgiraffers.common.Product;
 import com.ohgiraffers.common.ShoppingCart;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 import java.util.Date;
 
 @Configuration
+@ComponentScan("com.ohgiraffers.section02.initdestroy.subsection02")
 public class ContextConfiguration {
 
     @Bean
@@ -32,10 +34,5 @@ public class ContextConfiguration {
     @Scope("prototype") // bean 인스턴스가 생성되는 생명주기를 관리함
     public ShoppingCart cart(){
         return new ShoppingCart();
-    }
-
-    @Bean(initMethod = "openShop", destroyMethod = "closeShop")
-    public Owner owner(){
-        return new Owner();
     }
 }

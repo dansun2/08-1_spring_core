@@ -1,4 +1,4 @@
-package com.ohgiraffers.section02.initdestroy.subsection01.java;
+package com.ohgiraffers.section02.initdestroy.subsection02.annotation;
 
 import com.ohgiraffers.common.Berverage;
 import com.ohgiraffers.common.Bread;
@@ -46,6 +46,6 @@ public class Application {
         System.out.println("cart2에 담긴 내용 : " + cart2.getItems());
 
         ((AnnotationConfigApplicationContext) context).close(); // bean 들을 담고 있는 AnnotationConfigApplicationContext 컨텍스트들을 소멸시켜줌. 사실상 잘 안씀
-
+        
     }
 }
